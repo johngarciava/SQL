@@ -1,0 +1,23 @@
+#Created a games database
+CREATE TABLE games (id integer primary key, Name text, Platform text, Genre text, Release_Date integer, Price integer);
+
+#Inserted 5 pieces of data
+INSERT INTO games VALUES (1, 'League of Legends', 'PC', 'Fighting', 2008, 0);
+INSERT INTO games VALUES (2, 'The Witcher 3', 'PC', 'Fantasy', 2015, 15);
+INSERT INTO games VALUES (3, 'Clash Royale', 'Mobile', 'Fighting', 2016, 0);
+INSERT INTO games VALUES (4, 'Horizon Forbidden West', 'Console', 'Adventure', 2022, 60);
+INSERT INTO games VALUES (5, 'The Legend of Zelda: Breath of the Wild', 'Console', 'Adventure', 2017, 60);
+
+#Displayed all the database
+select * from games;
+
+#Displayed games that are currently free
+SELECT * FROM games
+where price < 1;
+
+#Displayed games ordered by release date
+SELECT * FROM games
+ORDER BY release_date;
+
+#Displayed the sum of price to purchase all the games from the store
+SELECT SUM(price) FROM games;
