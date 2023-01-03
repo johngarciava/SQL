@@ -45,13 +45,15 @@ artist_name
 ,avg(danceability)
 ,avg(energy)
 FROM BIT_DB.spotifydata
-GROUP BY artist_name, track_name;
+GROUP BY artist_name, track_name
+;
 
 #Artist with the longest song
 SELECT *
 FROM BIT_DB.Spotifydata
 ORDER BY duration_ms desc
-LIMIT 1;
+LIMIT 1
+;
 
 #What artist appeared the most in Spotify's top 50 songs in 2021?
 SELECT artist_name, COUNT(*) as 'Times appeared'
