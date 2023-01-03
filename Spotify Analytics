@@ -52,3 +52,10 @@ SELECT *
 FROM BIT_DB.Spotifydata
 ORDER BY duration_ms desc
 LIMIT 1;
+
+#What artist appeared the most in Spotify's top 50 songs in 2021?
+SELECT artist_name, COUNT(*) as 'Times appeared'
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY COUNT(*) desc
+;
