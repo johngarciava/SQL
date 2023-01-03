@@ -48,7 +48,7 @@ FROM BIT_DB.spotifydata
 GROUP BY artist_name, track_name
 ;
 
-#Artist with the longest song
+#What artist had the longest song?
 SELECT *
 FROM BIT_DB.Spotifydata
 ORDER BY duration_ms desc
