@@ -55,7 +55,7 @@ AND membership_status = 'gold'
 - results shows 3 males with gold membership status
 
 
-#QUERY TO GET THE KILLER CONNECTING ALL THE TABLES WITH ALL THE DATA COLLECTED FROM ABOVE
+#QUERY TO GET THE KILLER CONNECTING ALL THE RELEVANT TABLES WITH ALL THE DATA COLLECTED FROM ABOVE
 SELECT m.person_id, m.name, m.membership_status, c.check_in_date, p.license_id, dl.gender, dl.plate_number
 FROM get_fit_now_member m
 	LEFT JOIN get_fit_now_check_in c ON m.id = c.membership_id
