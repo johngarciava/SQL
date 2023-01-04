@@ -1,0 +1,67 @@
+#QUERY TO GRAB THE FULL NAMES OF THE WITNESSES WITH THE DATA GIVEN
+SELECT *
+FROM crime_scene_report
+WHERE date = '20180115' AND type = 'murder' AND city = 'SQL City';
+
+- 1st witness lives at the last house on Northwestern Dr
+- 2nd witness, named Annabel, lives somewhere on Franklin Ave
+
+#QUERY TO GRAB THE FIRST WITNESS
+SELECT *
+FROM person
+WHERE address_street_name = 'Northwestern Dr'
+ORDER BY address_number desc
+;
+
+#QUERY TO GRAB ANNABEL'S FULL NAME
+SELECT *
+FROM person
+WHERE address_street_name = 'Franklin Ave' AND name LIKE 'Annabel%'
+;
+
+
+#QUERY TO GET THE TRANSCRIPTS ON THE WITNESSES
+SELECT name, address_street_name, transcript, id, person_id
+FROM person
+LEFT JOIN interview
+ON person.id = interview.person_id
+WHERE person.name IN ('Annabel Miller', 'Morty Schapiro')
+;
+
+- killer checked in on january the 9th
+- had a "get fit now gym" bag 
+- membership number on the bag starts with "48Z", only gold members have these
+- got into a car with a plate that included "H42W"
+- saw a man run out
+
+#QUERY TO GET RESULTS WITH PLATE NUMBER "H42W"
+SELECT *
+FROM drivers_license
+where plate_number LIKE '%H42W%';
+
+- 3 results, 2 male, 1 female
+
+#QUERY TO GET GYM RESULTS WITH THE HINTS FROM ABOVE
+SELECT person_id, name, membership_status, check_in_date
+FROM get_fit_now_member
+LEFT JOIN get_fit_now_check_in
+ON get_fit_now_member.id = get_fit_now_check_in.membership_id
+WHERE check_in_date = '20180109'
+AND membership_status = 'gold'
+;
+
+- results shows 3 males with gold membership status
+
+
+#QUERY TO GET THE KILLER CONNECTING ALL THE TABLES WITH ALL THE DATA COLLECTED FROM ABOVE
+SELECT m.person_id, m.name, m.membership_status, c.check_in_date, p.license_id, dl.gender, dl.plate_number
+FROM get_fit_now_member m
+	LEFT JOIN get_fit_now_check_in c ON m.id = c.membership_id
+	LEFT JOIN person p ON m.person_id = p.id
+	LEFT JOIN drivers_license dl ON dl.id = p.license_id
+WHERE check_in_date = '20180109'
+AND membership_status = 'gold'
+AND plate_number LIKE '%H42W%'
+;
+
+- The murderer is Jeremy Bower
