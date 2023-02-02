@@ -62,7 +62,7 @@ GROUP BY artist_name
 ORDER BY COUNT(*) desc
 ;
 
-#What artists had a danceability over 90 and how many times did they do it?
+#What artists had a popularity over 90 and how many times did they do it?
 SELECT artist_name, COUNT(*)
 FROM BIT_DB.Spotifydata
 WHERE popularity > 90
